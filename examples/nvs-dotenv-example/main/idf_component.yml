@@ -1,0 +1,4 @@
+dependencies:
+  igrr/nvs-dotenv:
+    version: "*"
+    override_path: '../../../'

@@ -1,0 +1,9 @@
+description: nvs-doteenv makes variables defined in a .env file accessible using getenv function
+
+url: https://github.com/igrr/nvs-dotenv
+issues: https://github.com/igrr/nvs-dotenv/issues
+documentation: https://github.com/igrr/nvs-dotenv/tree/main/README.md
+repository: https://github.com/igrr/nvs-dotenv.git
+
+dependencies:
+  idf: ">=4.4.0"

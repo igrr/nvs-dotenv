@@ -1,0 +1,4 @@
+# Name,     Type,   SubType, Offset,  Size, Flags
+nvs,        data,   nvs,           ,  24k,
+factory,    app,    factory,       ,  550K,
+dotenv,     data,   nvs,           ,  12k,
