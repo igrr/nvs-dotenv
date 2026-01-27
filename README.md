@@ -66,6 +66,27 @@ I (6033) example: WIFI_SSID: yyyyyy
 I (6053) example: WIFI_PASS: xxxxxx
 ```
 
+## Contributing
+
+Contributions are welcome! Please follow these guidelines:
+
+1. **Commit messages**: Use [Conventional Commits](https://www.conventionalcommits.org/) format. You can use [commitizen](https://commitizen-tools.github.io/commitizen/) to help format your commits:
+   ```bash
+   pip install commitizen
+   cz commit
+   ```
+
+2. **Pre-commit hooks**: Install pre-commit hooks before making changes:
+   ```bash
+   pip install pre-commit
+   pre-commit install
+   ```
+
+3. **Releases**: Maintainers use commitizen to manage versioning and changelog:
+   ```bash
+   cz bump
+   ```
+
 ## License
 
 This component is provided under Apache 2.0 license, see [LICENSE](LICENSE.md) file for details.
