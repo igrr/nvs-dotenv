@@ -33,9 +33,9 @@ else()
     set(image_file ${CMAKE_BINARY_DIR}/${partition}.bin)
     idf_build_get_property(idf_path IDF_PATH)
     add_custom_target(
-        nvs_${partition}_bin
+        nvs_${partition}_bin ALL
         COMMAND ${python} ${idf_path}/components/nvs_flash/nvs_partition_generator/nvs_partition_gen.py generate --version 2 ${csv_path_full} ${image_file} ${size}
-        DEPENDS ${csv_full_path} nvs_dotenv_csv
+        DEPENDS ${csv_path_full} nvs_dotenv_csv
         BYPRODUCTS ${image_file}
         )
 
