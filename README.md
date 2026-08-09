@@ -41,18 +41,25 @@ With `nvs-dotenv`, you won't have to:
 
 ## `.env` file format
 
-Each variable is defined on its own line, as `VAR_NAME=value`. Blank lines and lines starting with `#` are ignored. Whitespace around the name and the value is stripped, and the value may be surrounded by double quotes:
+Each variable is defined on its own line, as `VAR_NAME=value`. Blank lines and lines starting with `#` are ignored.
 
 ```
 # Wi-Fi credentials
 WIFI_SSID=yyyyyy
-WIFI_PASS="pass with spaces"
+WIFI_PASS="pass with trailing space "
 
-# Values may contain commas and '=' characters
 MQTT_TOPICS=home/temperature,home/humidity
 ```
 
-Variable interpolation (`${OTHER_VAR}`) is not supported.
+Names are split from values at the first `=`, so a name can contain any character except `=`, and can't start with `#`.
+
+Values can contain any character except a line break — a variable can't span multiple lines. Note that:
+
+- Whitespace around the name and the value is removed. To keep leading or trailing whitespace in a value, put the value in double quotes; surrounding double quotes are removed.
+- `#` only starts a comment at the beginning of a line, so it is kept as a regular character inside a value.
+- Variable interpolation (`${OTHER_VAR}`) is not supported; `$` is kept as a regular character.
+
+Values are stored and read back as UTF-8.
 
 ## Example
 

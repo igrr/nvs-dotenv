@@ -54,8 +54,10 @@ def main() -> None:
 
     print(f'Processing dotenv file ({args.dotenv_file})', file=sys.stderr)
 
+    # nvs_partition_gen.py reads the CSV file as UTF-8, so don't leave the
+    # encoding up to the locale.
     try:
-        with open(args.dotenv_file, 'r') as dotenv_file:
+        with open(args.dotenv_file, 'r', encoding='utf-8') as dotenv_file:
             env_vars = get_env_vars_from_dotenv(dotenv_file)
     except FileNotFoundError:
         print(f'Dotenv file ({args.dotenv_file}) not found, no environment variables will be saved in NVS', file=sys.stderr)
@@ -64,7 +66,7 @@ def main() -> None:
         raise SystemExit(f'{args.dotenv_file}: {e}')
     
     try:
-        with open(args.csv_file, 'r') as csv_file:
+        with open(args.csv_file, 'r', encoding='utf-8') as csv_file:
             old_csv_content = csv_file.read()
     except FileNotFoundError:
         old_csv_content = ''
@@ -78,7 +80,7 @@ def main() -> None:
         # Don't update the resulting file if no changes are required
         return
     
-    with open(args.csv_file, 'w') as csv_file:
+    with open(args.csv_file, 'w', encoding='utf-8') as csv_file:
         csv_file.write(new_csv_content)
 
 

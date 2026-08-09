@@ -72,6 +72,15 @@ class TestDotenvParsing:
     def test_quoted_value(self):
         assert parse_dotenv('FOO="bar baz"\n') == {'FOO': 'bar baz'}
 
+    def test_quotes_keep_surrounding_whitespace(self):
+        assert parse_dotenv('FOO="  bar  "\n') == {'FOO': '  bar  '}
+
+    def test_hash_inside_value_is_not_a_comment(self):
+        assert parse_dotenv('FOO=bar # not a comment\n') == {'FOO': 'bar # not a comment'}
+
+    def test_no_variable_interpolation(self):
+        assert parse_dotenv('FOO=$BAR\n') == {'FOO': '$BAR'}
+
     def test_empty_value(self):
         assert parse_dotenv('FOO=\n') == {'FOO': ''}
 
@@ -105,6 +114,8 @@ class TestCsvRoundtrip:
             'say "hi"',
             'both "quotes, and commas"',
             'with spaces',
+            '# not a comment',
+            'привет',
         ],
         ids=lambda v: repr(v),
     )

@@ -37,8 +37,6 @@ Edit the `.env` file to set your own variables:
 ```
 WIFI_SSID=your_ssid
 WIFI_PASS=your_password
-
-# Values may contain commas
 MQTT_TOPICS=home/temperature,home/humidity
 ```
 
