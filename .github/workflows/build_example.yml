@@ -26,6 +26,19 @@ jobs:
       - name: Run pre-commit
         run: pre-commit run --all-files
 
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install pytest
+      - name: Run dotenv_to_csv.py unit tests
+        run: pytest test_dotenv_to_csv.py -v
+        working-directory: test
+
   build:
     runs-on: ubuntu-latest
     strategy:
