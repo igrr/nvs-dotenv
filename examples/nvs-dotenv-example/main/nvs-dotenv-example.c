@@ -20,4 +20,10 @@ void app_main(void)
         wifi_pass = "(not set)";
     }
     ESP_LOGI(TAG, "WIFI_PASS: %s", wifi_pass);
+
+    const char *mqtt_topics = getenv("MQTT_TOPICS");
+    if (mqtt_topics == NULL) {
+        mqtt_topics = "(not set)";
+    }
+    ESP_LOGI(TAG, "MQTT_TOPICS: %s", mqtt_topics);
 }

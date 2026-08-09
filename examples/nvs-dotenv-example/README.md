@@ -37,6 +37,7 @@ Edit the `.env` file to set your own variables:
 ```
 WIFI_SSID=your_ssid
 WIFI_PASS=your_password
+MQTT_TOPICS=home/temperature,home/humidity
 ```
 
 ### Partition table
@@ -56,4 +57,5 @@ dotenv,     data,   nvs,           ,  12k,
 I (XXX) example: Loading environment variables
 I (XXX) example: WIFI_SSID: yyyyyy
 I (XXX) example: WIFI_PASS: xxxxxx
+I (XXX) example: MQTT_TOPICS: home/temperature,home/humidity
 ```

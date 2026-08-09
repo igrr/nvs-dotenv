@@ -39,6 +39,27 @@ With `nvs-dotenv`, you won't have to:
    const char *ssid = getenv("WIFI_SSID");
    ```
 
+## `.env` file format
+
+Each variable is defined on its own line, as `VAR_NAME=value`. Blank lines and lines starting with `#` are ignored.
+
+```
+# Wi-Fi credentials
+WIFI_SSID=yyyyyy
+WIFI_PASS="pass with trailing space "
+
+MQTT_TOPICS=home/temperature,home/humidity
+```
+
+Names are split from values at the first `=`, so a name can contain any character except `=`, and can't start with `#`.
+
+Values can contain any character except a line break — a variable can't span multiple lines. Note that:
+
+- Whitespace around the name and the value is removed. To keep leading or trailing whitespace in a value, put the value in double quotes; surrounding double quotes are removed.
+- `#` only starts a comment at the beginning of a line, so it is kept as a regular character inside a value.
+- Variable interpolation (`${OTHER_VAR}`) is not supported; `$` is kept as a regular character.
+
+Values are stored and read back as UTF-8.
 
 ## Example
 
@@ -64,6 +85,7 @@ The output should be:
 I (3263) example: Loading environment variables
 I (6033) example: WIFI_SSID: yyyyyy
 I (6053) example: WIFI_PASS: xxxxxx
+I (6073) example: MQTT_TOPICS: home/temperature,home/humidity
 ```
 
 ## Contributing
