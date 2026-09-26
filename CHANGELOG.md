@@ -1,3 +1,9 @@
+## v1.1.0 (2026-09-26)
+
+### Feat
+
+- convert .env to CSV in CMake, use nvs_create_partition_image
+
 ## v1.0.2 (2026-08-09)
 
 ### Fix
