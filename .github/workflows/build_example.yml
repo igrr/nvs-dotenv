@@ -35,7 +35,7 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install pytest
-      - name: Run dotenv_to_csv.py unit tests
+      - name: Run dotenv_to_csv.cmake unit tests
         run: pytest test_dotenv_to_csv.py -v
         working-directory: test
 
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        idf_ver: ["release-v5.5", "release-v6.0"]
+        idf_ver: ["release-v5.3", "release-v5.4", "release-v5.5", "release-v6.0", "release-v6.1"]
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -53,6 +53,23 @@ jobs:
           esp_idf_version: ${{ matrix.idf_ver }}
           target: esp32
           path: examples/nvs-dotenv-example
+
+  build-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        idf_ver: ["release-v5.3", "release-v6.1"]
+    container: espressif/idf:${{ matrix.idf_ver }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Run build system tests
+        shell: bash
+        run: |
+          . $IDF_PATH/export.sh
+          pip install pytest
+          cd test
+          pytest test_build.py -v
 
   test:
     runs-on: ubuntu-latest
